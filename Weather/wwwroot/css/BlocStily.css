@@ -1,0 +1,95 @@
+﻿.btnfild {
+    background-color: rgb(220 220 220);
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #2980B9;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {
+    background-color: #ddd;
+}
+
+.show {
+    display: block;
+}
+
+.menu-main {
+    list-style: none;
+    padding: 25px 0 5px;
+    text-align: center;
+    background: salmon;
+}
+.nameDay {
+    height: 20px;
+    width: 70px;
+    
+}
+.imageBox {
+    height: 70px;
+    width: 70px;
+}
+.temp {
+    background-color: rgba(99, 214, 255, 0.25);
+    color: #000000;
+    border-radius: 5px 5px 0 0;
+}
+.tempfeel {
+    background-color: rgba(65, 205, 255, 0.7);
+    color: #000000;
+    border-radius: 0 0 5px 5px;
+    font-size: 80%;
+}
+.txt {
+    font-size: 70%;
+}
+.nameDayAndMon {
+    font-size: 80%;
+    font-weight: bold;
+}
+.txtDay {
+    font-size: 70%;
+}
+#myDropdown {
+    width: 622px;
+    height: 433px;
+    background-image: url(../images/show.jpg);
+}
+.nameDayAndMonDrop {
+    font-weight: normal;
+   
+}
+.txtTemp {
+    font-weight: 400;/*толщина*/
+}
+.txtDrop {
+    font-size: 90%;
+}
+.gradus {
+    font-size: 80%;
+    font-weight: 200ж
+}
