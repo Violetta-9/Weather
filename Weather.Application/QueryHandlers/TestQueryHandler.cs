@@ -11,9 +11,9 @@ namespace Weather.Application.QueryHandlers
         {
             
         }
-        public async Task<int> Handle(TestQuery request, CancellationToken cancellationToken)
+        public Task<int> Handle(TestQuery request, CancellationToken cancellationToken)
         {
-            return 0;
+            return Task.FromResult(1);
         }
     }
 }
