@@ -29,7 +29,7 @@ namespace Weather
             services.AddApplication();
 
            // services.Configure<WeatherController>(Configuration.GetSection("token"));
-            var config = Configuration.GetSection("WeatherCredentials:token").Get<string>();
+            var config = Configuration.GetSection("WeatherCredentials:Token").Get<string>();
             services.Configure<WeatherCredentials>(Configuration.GetSection(nameof(WeatherCredentials)));
 
         }
