@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Weather.Application;
 using Weather.Controllers;
 
 namespace Weather
@@ -25,6 +26,8 @@ namespace Weather
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddApplication();
+
            // services.Configure<WeatherController>(Configuration.GetSection("token"));
             var config = Configuration.GetSection("WeatherCredentials:token").Get<string>();
             services.Configure<WeatherCredentials>(Configuration.GetSection(nameof(WeatherCredentials)));

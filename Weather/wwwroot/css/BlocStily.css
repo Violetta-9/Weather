@@ -1,4 +1,5 @@
-﻿.btnfild {
+﻿@import url('file:///D:\Weather\Weather\wwwroot\css\BlocStily.css');
+.btnfild {
     background-color: rgb(220 220 220);
     font-size: 16px;
     cursor: pointer;
@@ -75,9 +76,11 @@
     font-size: 70%;
 }
 #myDropdown {
-    width: 622px;
-    height: 433px;
-    background-image: url(../images/show.jpg);
+    max-width: 430px;
+    width: 70vw;
+    z-index: 9999;
+    max-height: 60vh;
+    background-color: rgb(245,245,245);
 }
 .nameDayAndMonDrop {
     font-weight: normal;
@@ -89,7 +92,14 @@
 .txtDrop {
     font-size: 90%;
 }
-.gradus {
-    font-size: 80%;
-    font-weight: 200ж
+
+.bottomDiv {
+    background-color: rgb(232, 232, 232);
+    
+}
+.bigGradus {
+    font-size: 200%;
+}
+.unit {
+    font-size: 40%;
 }

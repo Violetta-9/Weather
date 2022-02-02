@@ -3,28 +3,50 @@
 @{
     ViewData["Title"] = "Index";
 }
-<div class="align-content-center">
-    <div class="col-lg-12 ">
-        <div class="dropdown col-lg-2">
+<div class="row align-content-center">
+    <div class="col-lg-12 row">
+        <div class="dropdown col-lg-3">
             <div onclick="myFunction(event)" id="dropbtn" class="border border-secondary row btnfild">
                 <div class="col-lg-5">
                     <div class="nameDay mt-3 ml-0"><b class="h5">Сейчас</b></div>
                     <div class=" mt-0 ml-1 ">@DateTime.Now.Hour:@DateTime.Now.Minute</div>
                 </div>
-                <div class=" col-lg-6 imageBox mt-2 pl-5 "> <img src="http://openweathermap.org/img/wn/@(Model.NowWeatherInfo.WeatherList[0].Icon).png" height="50px" width="50px" /></div>
+                <div class=" col-lg-6 imageBox mt-2 pl-5 "> <img src="http://openweathermap.org/img/wn/@(Model.NowWeatherInfo.WeatherList[0].Icon).png" /></div>
                 <div class="col-lg-10">
                     <div class="temp text-center">@Model.NowWeatherInfo.Main.Temperature</div>
-                    <div class="tempfeel mb-2 pl-2"> <span class="txt mr-2"> <b>По ощущению</b> </span> @Model.NowWeatherInfo.Main.FeelsTemperature</div>
+                    <div class="tempfeel mb-2 pl-2"> <span class="txt mr-2"> <b>По ощущению</b> </span> @Model.NowWeatherInfo.Main.FeelsTemperature
+                    </div>
                 </div>
             </div>
            
-            <div id="myDropdown"  class="dropdown-content">
+            <div id="myDropdown" class="dropdown-content">
                 <div class="mt-3 ml-0 text-center"><b class="h4 nameDayAndMonDrop ">@DateTime.Now.ToString("ddd, d MMMM ", CultureInfo.GetCultureInfo("ru-ru")),@DateTime.Now.Hour:@DateTime.Now.Minute</b></div>
                 <div class="col-lg-12 mt-5 text-center h1 txtTemp">@Model.NowWeatherInfo.Main.Temperature</div>
-                <div class="col-lg-12 text-center "><span class="txtDrop"><b>По ощущению</b></span>@Model.NowWeatherInfo.Main.FeelsTemperature </div>
+                <div class="text-center ">
+                    <span class="txtDrop text-center mr-3"><b>По ощущению</b></span>
+                    @Model.NowWeatherInfo.Main.FeelsTemperature
+                </div>
+                <div class="col-lg-12 text-center mt-4">@Model.NowWeatherInfo.WeatherList[0].Description</div>
+                <div class="col-lg-12 row bottomDiv m-0 p-0 pb-1 pr-1 mt-3">
+                    <div class="col-lg-4">
+                        <div class="col-lg-1">Ветер</div>
+                        <div class="bigGradus col-lg-12">@Model.NowWeatherInfo.Wind.WindSpeed<span class="unit">м/с</span></div>
+
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="col-lg-1">Давление</div>
+                        <div class="bigGradus ml-2">@Model.NowWeatherInfo.Main.Pressure<span class="unit ">мм рт.ст.</span></div>
+
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="col-lg-1">Влажность</div>
+                        <div class="bigGradus ml-2">@Model.NowWeatherInfo.Main.Humidity<span class="unit">%</span></div>
+
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="dropdown col-lg-2">
+        <div class="dropdown col-lg-3  ml-lg-2 ml-sm-0 ">
             <div onclick="myFunction(event)" id="dropbtn" class="border border-secondary row btnfild">
                 <div class="col-lg-8">
                     <div class="mt-3 ml-0"><b class="h6 nameDayAndMon">@DateTime.Now.ToString("ddd, d MMMM ", CultureInfo.GetCultureInfo("ru-ru"))</b></div>
@@ -44,12 +66,12 @@
             </div>
         </div>
         
-        <div class="dropdown col-lg-2">
+        <div class="dropdown col-lg-3 ml-lg-2 ml-sm-0">
             <div onclick="myFunction(event)" id="dropbtn" class="border border-secondary row btnfild">
                 <div class="col-lg-8 ">
                     <div class="mt-3 ml-0"><b class="h6 nameDayAndMon text-center">7 дней</b></div>
                     
-                </div><div class=" col-lg-4 imageBox mt-2 pl-2 "> <img src="http://openweathermap.org/img/wn/@(Model.WeatherFor5Days.Daily[1].Weather[0].Icon).png" height="50px" width="50px" /></div>
+                </div><div class=" col-sm-4 imageBox mt-2 pl-2 "> <img src="http://openweathermap.org/img/wn/@(Model.WeatherFor5Days.Daily[1].Weather[0].Icon).png" height="50px" width="50px" /></div>
                 <div class="col-lg-10">
                     <div class="temp text-center">@Model.NowWeatherInfo.Main.Temperature</div>
                     <div class="tempfeel mb-2 pl-2"> <span class="txt"><b>По ощущению</b></span>@Model.NowWeatherInfo.Main.FeelsTemperature</div>

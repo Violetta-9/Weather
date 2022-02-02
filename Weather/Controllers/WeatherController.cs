@@ -30,7 +30,7 @@ namespace Weather.Controllers
             {
                 
 
-                RequestUri = new Uri($"https://api.openweathermap.org/data/2.5/weather?q=Vitebsk&units=metric&appid={_token}"),
+                RequestUri = new Uri($"https://api.openweathermap.org/data/2.5/weather?q=Vitebsk&units=metric&appid={_token}&lang=ru"),
 
 
             };
