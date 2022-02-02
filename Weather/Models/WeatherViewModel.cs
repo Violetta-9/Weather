@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Weather.Contracts.Models;
 using Weather.Domain.Models;
 
 namespace Weather.Models
