@@ -30,10 +30,7 @@ namespace Weather.Controllers
         
         public  async Task<ActionResult> Details(string cityName)
         {
-            if (string.IsNullOrWhiteSpace(cityName))
-            {
-                return View();
-            }
+            
             var weatherNowInfo = await _mediator.Send(new GetNowWeatherQuery("Витебск"));
             var cityLocationInfo = await _mediator.Send((new GetCityLocationQuery("Витебск")));
             var weatherDailyInfo = await _mediator.Send(new GetWeatherDailyQuery(

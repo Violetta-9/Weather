@@ -61,18 +61,18 @@
             </div>
            
             <div id="myDropdown" class="dropdown-content">
-                <div class=" ml-5 col-lg-12 row">
-                <div class=" mt-2 txtDrop mr-5  ">
-                    <p><span class="mr-2 font-weight-bold bg-day">Утром:</span>@Model.WeatherFor5Days.Daily[0].Temp.Morning</p>
-                    <p><span class="mr-2 font-weight-bold bg-day">Днем:</span> @Model.WeatherFor5Days.Daily[0].Temp.Day</p>
+                <div class="mt-3 col-lg-12 row">
+                    <div class="pl-5 txtDrop ">
+                        <p><span class="font-weight-bold bg-day">Утром:</span>@Model.WeatherFor5Days.Daily[0].Temp.Morning</p>
+                        <p><span class="font-weight-bold bg-day">Днем:</span> @Model.WeatherFor5Days.Daily[0].Temp.Day</p>
 
-                </div >
-                    <div class="ml-2 mt-2 txtDrop  ">
-                        <p><span class="mr-2 font-weight-bold bg-night">Вечером:</span> @Model.WeatherFor5Days.Daily[0].Temp.Evening</p>
-                        <p><span class="mr-2 font-weight-bold bg-night">Ночью:</span> @Model.WeatherFor5Days.Daily[0].Temp.Night</p>
+                    </div >
+                    <div class=" pl-5 txtDrop">
+                        <p><span class=" font-weight-bold bg-night">Вечером:</span> @Model.WeatherFor5Days.Daily[0].Temp.Evening</p>
+                        <p><span class="font-weight-bold bg-night">Ночью:</span> @Model.WeatherFor5Days.Daily[0].Temp.Night</p>
                     </div>
                 </div>
-               
+
                 <div class="col-lg-12 row bottomDiv m-0 p-0 pb-1 pr-1 mt-3">
                     <div class="col-lg-4">
                         <div class="col-lg-1">Вероятность осадков</div>
