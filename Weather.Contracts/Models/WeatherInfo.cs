@@ -7,9 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
-using Weather.Domain.Models;
+using Weather.Contracts.Models;
 
-namespace Weather.Domain.Models
+namespace Weather.Contracts.Models
 {
     [System.Serializable]
     public class WeatherInfo
@@ -79,9 +79,9 @@ namespace Weather.Domain.Models
     public class Wind
     {
         [JsonProperty("speed")] 
-        public int WindSpeed { get; set; }
+        public double WindSpeed { get; set; }
         [JsonProperty("gust")]
-        public int Gust { get; set; }
+        public double Gust { get; set; }
     }
 
     [System.Serializable]

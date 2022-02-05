@@ -34,7 +34,7 @@ namespace Weather.Contracts.Models
         public List<Location> Locations { get; set; }
     }
 
-    public class CitiInfo
+    public class CityInfo
     {
 
         public List<Result> Results { get; set; }
