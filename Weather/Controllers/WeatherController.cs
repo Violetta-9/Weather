@@ -3,61 +3,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Weather.Application.Queries;
 using Weather.Contracts.Models;
-using Weather.Domain.Models;
 using Weather.Models;
 
 namespace Weather.Controllers
 {
     public class WeatherController : Controller
     {
-        // GET: WeatherController
-        private readonly string _token;
-
-        public WeatherController(IOptions<WeatherCredentials> token)
+        public readonly IMediator _mediator;
+        public WeatherController(IMediator mediator)
         {
-            _token = token.Value.Token;
+            _mediator = mediator;
         }
         public async Task<ActionResult> Index()
         {
-            var client = new HttpClient();
-            var infoAboutWeather = new WeatherViewModel();
-            var request = new HttpRequestMessage
+            var weatherNowInfo = await _mediator.Send(new GetNowWeatherQuery("Витебск"));
+            var cityLocationInfo = await _mediator.Send((new GetCityLocationQuery("Витебск")));
+            var weatherDailyInfo = await _mediator.Send(new GetWeatherDailyQuery(
+                cityLocationInfo.Results[0].Locations[0].LatLng.Lat,
+                cityLocationInfo.Results[0].Locations[0].LatLng.Lng));
+            var infoAboutWeather = new WeatherViewModel()
             {
-                
-
-                RequestUri = new Uri($"https://api.openweathermap.org/data/2.5/weather?q=Vitebsk&units=metric&appid={_token}&lang=ru"),
-
-
+                NowWeatherInfo = weatherNowInfo,
+                WeatherFor5Days = weatherDailyInfo
             };
-            var request1 = new HttpRequestMessage
-            {
-                RequestUri =
-                    new Uri(
-                        $"https://api.openweathermap.org/data/2.5/onecall?lat=55.11&lon=30.12&units=metric&exclude=current,minutely,hourly,alerts&appid={_token}&lang=ru"),
-            };
-            using (var response = await client.SendAsync(request))
-            {
-                response.EnsureSuccessStatusCode();
-                var body = await response.Content.ReadAsStringAsync();
-                var result = JObject.Parse(body);
-                var item  = result.ToObject<WeatherInfo>();
-                infoAboutWeather.NowWeatherInfo = item;
-            }
-            using (var response = await client.SendAsync(request1))
-            {
-                response.EnsureSuccessStatusCode();
-                var body = await response.Content.ReadAsStringAsync();
-                var result = JObject.Parse(body);
-                var item = result.ToObject<WeatherDaily>();
-                infoAboutWeather.WeatherFor5Days = item;
-            }
-
             return View(infoAboutWeather);
         }
 

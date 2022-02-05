@@ -1,5 +1,5 @@
 ﻿using Weather.Contracts.Models;
-using Weather.Domain.Models;
+using Weather.Contracts.Models;
 
 namespace Weather.Models
 {

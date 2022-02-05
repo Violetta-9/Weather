@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Weather.Application;
+using Weather.Contracts.Models;
 using Weather.Controllers;
 
 namespace Weather
@@ -28,10 +29,12 @@ namespace Weather
             services.AddControllersWithViews();
             services.AddApplication();
 
-           // services.Configure<WeatherController>(Configuration.GetSection("token"));
-            var config = Configuration.GetSection("WeatherCredentials:Token").Get<string>();
+           
+          // Configuration.GetSection("WeatherCredentials:Token").Get<string>();
+           
             services.Configure<WeatherCredentials>(Configuration.GetSection(nameof(WeatherCredentials)));
-
+            //Configuration.GetSection("CityCredentials:Token").Get<CityCredentials>();
+            services.Configure<CityCredentials>(Configuration.GetSection(nameof(CityCredentials)));
         }
 
 
