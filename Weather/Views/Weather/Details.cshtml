@@ -21,7 +21,7 @@
            
             <div id="myDropdown" class="dropdown-content">
                 <div class="mt-3 ml-0 text-center"><b class="h4 nameDayAndMonDrop ">@DateTime.Now.ToString("ddd, d MMMM ", CultureInfo.GetCultureInfo("ru-ru")),@DateTime.Now.Hour:@DateTime.Now.Minute</b></div>
-                <div class="col-lg-12 mt-5 text-center h1 txtTemp">@Model.NowWeatherInfo.Main.Temperature</div>
+                <div class="col-lg-12 mt-5 text-center h1 txt-temp">@Model.NowWeatherInfo.Main.Temperature</div>
                 <div class="text-center ">
                     <span class="txtDrop text-center mr-3"><b>По ощущению</b></span>
                     @Model.NowWeatherInfo.Main.FeelsTemperature
@@ -52,17 +52,44 @@
                     <div class="mt-3 ml-0"><b class="h6 nameDayAndMon">@DateTime.Now.ToString("ddd, d MMMM ", CultureInfo.GetCultureInfo("ru-ru"))</b></div>
                     <div class=" mt-0 ml-1 txtDay">Сегодня</div>
                 </div>
-                <div class=" col-lg-4 imageBox mt-2 pl-2 "> <img src="http://openweathermap.org/img/wn/@(Model.NowWeatherInfo.WeatherList[0].Icon).png" height="50px" width="50px" /></div>
-                <div class="col-lg-10">
-                    <div class="temp text-center">@Model.NowWeatherInfo.Main.Temperature</div>
-                    <div class="tempfeel mb-2 pl-2"> <span class="txt"><b>По ощущению</b></span>  @Model.NowWeatherInfo.Main.FeelsTemperature</div>
+                <div class=" col-lg-4 imageBox mt-2 pl-2 "> <img src="http://openweathermap.org/img/wn/@(Model.WeatherFor5Days.Daily[0].Weather[0].Icon).png"  /></div>
+                <div class="row col-lg-8 col-md-6 ml-2 mb-2 mt-1">
+                    <div class="temp-min  text-center mt-2 pt-2">@Model.WeatherFor5Days.Daily[0].Temp.MinTemp</div>
+                    <div class="temp-max  mb-2 pl-2"> @Model.WeatherFor5Days.Daily[0].Temp.MaxTemp</div>
+
                 </div>
             </div>
            
             <div id="myDropdown" class="dropdown-content">
-                <p>@Model.WeatherFor5Days.Daily[0].Clouds</p>
-                <p>@Model.WeatherFor5Days.Daily[1].Snow</p>
-                <p>@Model.WeatherFor5Days.Daily[0].Temp.Day</p>
+                <div class=" ml-5 col-lg-12 row">
+                <div class=" mt-2 txtDrop mr-5  ">
+                    <p><span class="mr-2 font-weight-bold bg-day">Утром:</span>@Model.WeatherFor5Days.Daily[0].Temp.Morning</p>
+                    <p><span class="mr-2 font-weight-bold bg-day">Днем:</span> @Model.WeatherFor5Days.Daily[0].Temp.Day</p>
+
+                </div >
+                    <div class="ml-2 mt-2 txtDrop  ">
+                        <p><span class="mr-2 font-weight-bold bg-night">Вечером:</span> @Model.WeatherFor5Days.Daily[0].Temp.Evening</p>
+                        <p><span class="mr-2 font-weight-bold bg-night">Ночью:</span> @Model.WeatherFor5Days.Daily[0].Temp.Night</p>
+                    </div>
+                </div>
+               
+                <div class="col-lg-12 row bottomDiv m-0 p-0 pb-1 pr-1 mt-3">
+                    <div class="col-lg-4">
+                        <div class="col-lg-1">Вероятность осадков</div>
+                        <div class="bigGradus col-lg-12">@((@Model.WeatherFor5Days.Daily[0].Pop)*100)<span class="unit">%</span></div>
+
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="col-lg-1">Облачность</div>
+                        <div class="bigGradus ml-2">@Model.WeatherFor5Days.Daily[0].Clouds<span class="unit ">%</span></div>
+
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="col-lg-1">Влажность</div>
+                        <div class="bigGradus ml-2">@Model.WeatherFor5Days.Daily[0].Humidity<span class="unit">%</span></div>
+
+                    </div>
+                </div>
             </div>
         </div>
         

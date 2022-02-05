@@ -24,6 +24,16 @@ namespace Weather.Controllers
         }
         public async Task<ActionResult> Index()
         {
+            return View("Question");
+        }
+
+        
+        public  async Task<ActionResult> Details(string cityName)
+        {
+            if (string.IsNullOrWhiteSpace(cityName))
+            {
+                return View();
+            }
             var weatherNowInfo = await _mediator.Send(new GetNowWeatherQuery("Витебск"));
             var cityLocationInfo = await _mediator.Send((new GetCityLocationQuery("Витебск")));
             var weatherDailyInfo = await _mediator.Send(new GetWeatherDailyQuery(
@@ -35,12 +45,6 @@ namespace Weather.Controllers
                 WeatherFor5Days = weatherDailyInfo
             };
             return View(infoAboutWeather);
-        }
-
-        // GET: WeatherController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
         }
 
         // GET: WeatherController/Create

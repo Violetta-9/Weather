@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewData["Title"] = "Question";
+}
+<p class="h3 font-weight-bold text-secondary">В каком городе вы хотите увидеть погоду?</p>
+<form  asp-controller="Weather" asp-action="Details"  method="post">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Введите город" aria-label="Recipient's username" aria-describedby="button-addon2">
+        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Узнать</button>
+    </div>
+</form>

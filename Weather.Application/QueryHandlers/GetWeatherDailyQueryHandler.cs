@@ -27,7 +27,7 @@ namespace Weather.Application.QueryHandlers
             {
                 RequestUri =
                     new Uri(
-                        $"https://api.openweathermap.org/data/2.5/onecall?lat=55.11&lon=30.12&units=metric&exclude=current,minutely,hourly,alerts&appid={_token}&lang=ru"),
+                        $"https://api.openweathermap.org/data/2.5/onecall?lat=55.19&lon=30.20&units=metric&exclude=current,minutely,hourly,alerts&appid={_token}&lang=ru"),
                 Method = HttpMethod.Get
             };
             using (var response = await client.SendAsync(requestForWeatherDaily))
