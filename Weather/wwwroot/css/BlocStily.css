@@ -124,3 +124,6 @@
 .bg-night {
     background-color: rgb(166, 189, 215);
 }
+.bg-table {
+    background-color: rgba(65, 205, 255, 0.7);
+}
