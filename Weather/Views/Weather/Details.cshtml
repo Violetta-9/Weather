@@ -96,12 +96,17 @@
 
         <div class="dropdown col-lg-3 ml-lg-2 ml-sm-0">
             <div onclick="myFunction(event)" id="dropbtn" class="border border-secondary row btnfild">
-                <div class="col-lg-12 pb-5 pt-3">
-                    <div class="h5 mt-2 text-center">Погода на неделю</div>
-                    <div class=" ml-0 text-center"><b class="h6 nameDayAndMon text-center">c @Model.WeatherFor5Days.Daily[0].Dt.ToString("M", CultureInfo.GetCultureInfo("ru-ru")) по @Model.WeatherFor5Days.Daily[6].Dt.ToString("M", CultureInfo.GetCultureInfo("ru-ru"))</b></div>
+                <div class="row">
+                    <div class="ml-1 col-lg-7">
+                        <div class="h4 mt-2 text-center ">Погода на неделю</div>
+                        <div class=" ml-0 text-center"><b class="h2 nameDayAndMon text-center">c @Model.WeatherFor5Days.Daily[0].Dt.ToString("M", CultureInfo.GetCultureInfo("ru-ru")) по @Model.WeatherFor5Days.Daily[6].Dt.ToString("M", CultureInfo.GetCultureInfo("ru-ru"))</b></div>
 
+                    </div>
+                    <div class="col-lg-3 pb-5 pt-3 ">
+                        <i class=" mt-3 ml-1 col-lg-2 fas fa-light fa-temperature-high text-color"></i>
+                      
+                    </div>
                 </div>
-                
 
 
             </div>
@@ -132,33 +137,55 @@
                             <td>@item.Temp.Evening</td>
                            
                         </tr>
-                        <table class="table bg-table ">
-                            <tbody>
-                            <tr>
-                                <th><img src="http://openweathermap.org/img/wn/@(item.Weather[0].Icon).png" /></th>
-                                <td>Вероятность осадков @item.Pop </td>
-                                <td>
 
-                                    <div id="accordion">
-                                    <button class="btn" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                        ˅
-                                    </button>
-
-                                        <div id="collapseOne" class=" collapse ">
-                                            <p>Давление @item.Pressure </p>
-                                            <p>Облачность @item.Clouds</p>
-                                            <p>Ветер @item.WindSpeed </p>
-                                        </div>
-                                    </div>
-                                </td>
-
-                            </tr>
                            
-                            </tbody>
-                        </table>
                         </tbody>
                     </table>
-                }
+                    <div id="accordion">
+                        <div class="btn bg-table some " data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                            <div class="row col-lg-12"><div class="col-lg-2" >
+                                    <img src="http://openweathermap.org/img/wn/@(item.Weather[0].Icon).png"/>
+
+                                </div>
+                                <div class="col-lg-7 pt-1" >
+                                    <div class="text-center">Вероятность осадков</div>
+                                    <div class="text-center">@((@item.Pop) * 100)<span >%</span></div>
+
+                                </div>
+
+                                <div class="col-lg-3 pt-1">
+                                    ˅
+                                </div>
+                                </div>
+                        </div>
+
+                        <div id="collapseOne" class=" collapse ">
+                            <div class="mr-3 col-lg-12 row">
+                                <div class="col-lg-4">
+                                    <div class="col-lg-1">Ветер</div>
+                                    <div class="bigGradus ">@item.WindSpeed<span class="unit">м/с</span></div>
+
+                                </div>
+                                <div class="col-lg-5">
+                                    <div class="col-lg-1">Давление</div>
+                                    <div class="bigGradus ml-2">@item.Pressure<span class="unit ">мм рт.ст.</span></div>
+
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="col-lg-1">Облачность</div>
+                                    <div class="bigGradus ml-2">@item.Clouds<span class="unit ">%</span></div>
+
+                                </div>
+                                
+                            </div>
+            
+                            
+        
+                        </div>
+
+                    </div>
+                 
+                 }
                
             </div>
         </div>
@@ -183,3 +210,23 @@
     }
 
 </script>
+@*<div class=" row " id="accordion">
+    <a class="btn bg-table" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+        <div class="col-lg-2">
+            <img src="http://openweathermap.org/img/wn/@(item.Weather[0].Icon).png"/>
+        </div>
+        <div class="col-lg-2">
+            <div class="">Вероятность осадков</div>
+            <div class=" col-lg-12">@((@Model.WeatherFor5Days.Daily[0].Pop)*100)<span class="unit">%</span></div>
+        </div> 
+        <div class="col-lg-2">
+            ˅
+        </div>
+    </a>
+
+    <div id="collapseOne" class=" collapse ">
+        <p>Давление @item.Pressure </p>
+        <p>Облачность @item.Clouds</p>
+        <p>Ветер @item.WindSpeed </p>
+    </div>
+</div>*@
