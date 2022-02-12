@@ -137,3 +137,51 @@
     
    
 }
+.container2 {
+    width: 300px;
+    height: 150px;
+    margin: auto;
+    overflow: hidden;
+ 
+    position: relative;
+    transition: all 1s;
+    transform-origin: 50% 50%;
+}
+
+.sunbox {
+    width: 300px;
+    height: 300px;
+    margin: auto;
+    overflow: hidden;
+    position: absolute;
+  
+    position: absolute;
+    bottom: -180px;
+    left: 0px;
+    transform: rotate(0deg);
+    transition: transform 5s;
+}
+
+.sun {
+    color: #fc0;
+    position: absolute;
+    bottom: 150px;
+   
+}
+.duga {
+    width: 280px;
+    height: 280px;
+    border: 1px solid;
+    border-color: gray;
+    border-radius: 50%;
+    position: relative;
+    bottom: -10px;
+    left: 7px;
+   
+}
+.margin {
+    margin-left: 1vw;
+}
+.se {
+
+}

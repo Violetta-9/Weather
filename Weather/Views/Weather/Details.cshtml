@@ -20,9 +20,35 @@
                 </div>
             </div>
 
-            <div id="myDropdown" class="dropdown-content">
+            <div id="myDropdown" onclick="loadPage()" class="dropdown-content">
                 <div class="mt-3 ml-0 text-center"><b class="h4 nameDayAndMonDrop ">@DateTime.Now.ToString("ddd, d MMMM ", CultureInfo.GetCultureInfo("ru-ru")),@DateTime.Now.Hour:@DateTime.Now.Minute</b></div>
-                <div class="col-lg-12 mt-5 text-center h1 txt-temp">@Model.NowWeatherInfo.Main.Temperature</div>
+                <div>
+
+                    <div class="container2">
+
+                        <div class="sunbox">
+                            <div class="duga"></div>
+                            <div class="sun">
+                                <i class=" fas fa-solid fa-sun"></i>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="col-lg-12 col-sm-12 se  row">
+                        <div class="col-lg-6 col-sm-6">
+                            <div class=" margin pl-2 col-lg-6">Восход</div>
+                            <span class=" margin  col-lg-6">@Model.NowWeatherInfo.Sys.Sunrise.ToShortTimeString()</span>
+                        </div>
+                        <div class="col-lg-6 col-sm-6 text-lg-right text-sm-left ">
+                            <div class=" col-lg-12 col-sm-12 "><span class="text-lg-right text-sm-right">Закат</span></div>
+                            <span class="col-lg-6 col-sm-6 ">@Model.NowWeatherInfo.Sys.Sunset.ToShortTimeString()</span>
+                        </div>
+                      
+                    </div>
+                </div>
+                <div class="col-lg-12 mt-0 text-center h1 txt-temp">@Model.NowWeatherInfo.Main.Temperature</div>
+
                 <div class="text-center ">
                     <span class="txtDrop text-center mr-3"><b>По ощущению</b></span>
                     @Model.NowWeatherInfo.Main.FeelsTemperature
@@ -207,7 +233,17 @@
         var result1 = result.querySelector('#myDropdown');
 
         result1.classList.toggle("show");
+        setTimeout(loadPage, 3000);
+        function loadPage() {
+            var i=18-8;
+            var g=180/+i;
+            var v=15-8;
+            var r=v*g;
+            document.getElementsByClassName('sunbox')[0].style.transform = " rotate("+r+"deg)";
+        }
     }
+  
+
 
 </script>
 @*<div class=" row " id="accordion">
