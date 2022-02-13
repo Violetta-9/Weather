@@ -138,50 +138,50 @@
    
 }
 .container2 {
-    width: 300px;
-    height: 150px;
+    width: 18vw;
+    height: 9vmax;
     margin: auto;
     overflow: hidden;
- 
     position: relative;
     transition: all 1s;
     transform-origin: 50% 50%;
 }
 
 .sunbox {
-    width: 300px;
-    height: 300px;
+    width: 17vw;
+    height: 17vw;
     margin: auto;
     overflow: hidden;
     position: absolute;
-  
     position: absolute;
-    bottom: -180px;
-    left: 0px;
+    bottom: -9vw;
     transform: rotate(0deg);
     transition: transform 5s;
+    padding: 1vw;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .sun {
     color: #fc0;
     position: absolute;
-    bottom: 150px;
+    bottom: 50%;
+    font-size: 2vw;
+    left: -1px;
+    padding-left: 2%
    
 }
 .duga {
-    width: 280px;
-    height: 280px;
+    width: 15vw;
+    height: 15vw;
     border: 1px solid;
     border-color: gray;
     border-radius: 50%;
     position: relative;
-    bottom: -10px;
-    left: 7px;
-   
+ 
 }
 .margin {
     margin-left: 1vw;
 }
-.se {
 
-}
+
