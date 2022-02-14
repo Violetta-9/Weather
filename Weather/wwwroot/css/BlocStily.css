@@ -76,8 +76,8 @@
     font-size: 70%;
 }
 #myDropdown {
-    max-width: 430px;
-    width: 70vw;
+    max-width: 40vw;
+    width: 40vw;
     z-index: 9999;
     max-height: 60vh;
     background-color: rgb(245,245,245);
@@ -145,22 +145,24 @@
     position: relative;
     transition: all 1s;
     transform-origin: 50% 50%;
+
 }
 
-.sunbox {
-    width: 17vw;
-    height: 17vw;
-    margin: auto;
-    overflow: hidden;
-    position: absolute;
-    position: absolute;
-    bottom: -9vw;
-    transform: rotate(0deg);
-    transition: transform 5s;
-    padding: 1vw;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
+
+    .sunbox {
+        width: 17vw;
+        height: 17vw;
+        margin: auto;
+        overflow: hidden;
+        position: absolute;
+        position: absolute;
+        bottom: -9vw;
+        transform: rotate(0deg);
+        transition: transform 5s;
+        padding: 1vw;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
 
 .sun {
     color: #fc0;
@@ -168,20 +170,22 @@
     bottom: 50%;
     font-size: 2vw;
     left: -1px;
-    padding-left: 2%
-   
+    padding-left: 2%;
+    transition: 3s linear;
 }
-.duga {
-    width: 15vw;
-    height: 15vw;
-    border: 1px solid;
-    border-color: gray;
-    border-radius: 50%;
-    position: relative;
- 
-}
-.margin {
-    margin-left: 1vw;
-}
+
+
+    .duga {
+        width: 15vw;
+        height: 15vw;
+        border: 1px solid;
+        border-color: gray;
+        border-radius: 50%;
+        position: relative;
+    }
+
+    .margin {
+        margin-left: 1vw;
+    }
 
 
