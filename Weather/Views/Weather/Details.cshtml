@@ -18,9 +18,37 @@
                         <span class="txt mr-2"> <b>По ощущению</b> </span> @Model.NowWeatherInfo.Main.FeelsTemperature
                     </div>
                 </div>
+                @{
+                    var timeRise = @Model.NowWeatherInfo.Sys.Sunrise;
+                    DateTime roundedRise = timeRise.AddMilliseconds(-timeRise.Millisecond).AddSeconds(-timeRise.Second);
+
+                    int minutesRise = 0;
+                    if (roundedRise.Minute <= 30  )
+                    {
+                        minutesRise = 30;
+                    }
+                    else
+                    {
+                        minutesRise = 60;
+                    }
+                    roundedRise = roundedRise.AddMinutes(minutesRise - roundedRise.Minute);
+                    
+                    var timeSet = @Model.NowWeatherInfo.Sys.Sunset;
+                    DateTime roundedSet = timeSet.AddMilliseconds(-timeSet.Millisecond).AddSeconds(-timeSet.Second);
+                    int minutesSet = 0;
+                    if (roundedSet.Minute <= 30  )
+                    {
+                        minutesSet = 30;
+                    }
+                    else
+                    {
+                        minutesSet = 60;
+                    }
+                    roundedSet = roundedSet.AddMinutes(minutesSet - roundedSet.Minute);
+                }
             </div>
 
-            <div id="myDropdown" onclick="loadPage()" class="dropdown-content">
+            <div id="myDropdown" onclick="loadPage('@roundedRise.ToShortTimeString()','@roundedSet.ToShortTimeString()')" class="dropdown-content">
                 <div class="mt-3 ml-0 text-center"><b class="h4 nameDayAndMonDrop ">@DateTime.Now.ToString("ddd, d MMMM ", CultureInfo.GetCultureInfo("ru-ru")),@DateTime.Now.Hour:@DateTime.Now.Minute</b></div>
                 <div class="col-12">
 
@@ -221,6 +249,7 @@
 </div>
 <script>
     function myFunction(event) {
+        
         var dropdowns = document.getElementsByClassName("dropdown-content");
         var i;
         for (i = 0; i < dropdowns.length; i++) {
@@ -233,24 +262,43 @@
         var result1 = result.querySelector('#myDropdown');
 
         result1.classList.toggle("show");
-        setTimeout(loadPage, 3000);
-        function loadPage() {
-            var i=18-8;
-            var g=180/+i;
-            var v=10-8;
-            var r=v*g;
-            
-          
-            document.getElementsByClassName('sunbox')[0].style.transform = " rotate(" + r + "deg)";
-            console.log(document.getElementsByClassName('sunbox')[0].style.transform);
-            if (r > 100) {
-                document.getElementsByClassName('sun')[0].style.color = "orange";
-            }
-
-        }
+       
     }
   
+ 
+    function loadPage(sunrise, sunset) {
+        console.log(sunrise);
+        var minutsOfSunrise = sunrise.split(/\s*:/);
+        var minutsOfSunset = sunset.split(/\s*:/);
+        console.log(minutsOfSunrise[0]);
+        var roundOfSunrise = minutsOfSunrise[1] == 30 ? Number(minutsOfSunrise[0])+ 0.5 : minutsOfSunrise[0];
+        var roundOfSunset = minutsOfSunset[1] == 30 ? Number(minutsOfSunset[0]) + 0.5 : minutsOfSunset[0];
+        var difference = roundOfSunset - roundOfSunrise;
+        console.log(difference);
+        var gradus = 180 / difference;
+        var now = new Date().toLocaleTimeString().slice(0, -3);
+        if (now < minutsOfSunrise) {
+            document.getElementsByClassName('sunbox')[0].style.transform = " rotate(" + 0 + "deg)";
+            document.getElementsByClassName('sun')[0].style.color = "orange";
+        } if (now > minutsOfSunset) {
+            document.getElementsByClassName('sunbox')[0].style.transform = " rotate(" + 170 + "deg)";
+            document.getElementsByClassName('sun')[0].style.color = "orange";
+        }
+        else {
+        var nowTime = minutsOfSunrise[1] < 30 ? Number(minutsOfSunrise[0]) + 0.5 : minutsOfSunrise[0];
+        
+        var differenceOfTime = nowTime - minutsOfSunrise;
+        var deg = gradus * differenceOfTime;
+        console.log(difference);
+            
+          
+        document.getElementsByClassName('sunbox')[0].style.transform = " rotate(" + deg + "deg)";
+        console.log(document.getElementsByClassName('sunbox')[0].style.transform);
+            if (gradus > 165) {
+            document.getElementsByClassName('sun')[0].style.color = "orange";
+        }
+        }
 
+    }
 
 </script>
-s
