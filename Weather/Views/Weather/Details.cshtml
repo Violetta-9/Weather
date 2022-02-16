@@ -32,7 +32,7 @@
                         minutesRise = 60;
                     }
                     roundedRise = roundedRise.AddMinutes(minutesRise - roundedRise.Minute);
-                    
+
                     var timeSet = @Model.NowWeatherInfo.Sys.Sunset;
                     DateTime roundedSet = timeSet.AddMilliseconds(-timeSet.Millisecond).AddSeconds(-timeSet.Second);
                     int minutesSet = 0;
@@ -44,21 +44,40 @@
                     {
                         minutesSet = 60;
                     }
+
                     roundedSet = roundedSet.AddMinutes(minutesSet - roundedSet.Minute);
+
+
+                    var nowTime = DateTime.Now;
+                    DateTime roundedNow = nowTime.AddMilliseconds(-nowTime.Millisecond).AddSeconds(-nowTime.Second);
+                    int minutesNow = 0;
+                    if (roundedNow.Minute <= 30  )
+                    {
+                        minutesNow = 30;
+                    }
+                    else
+                    {
+                        minutesNow = 60;
+                    }
+                    roundedNow = roundedNow.AddMinutes(minutesNow - roundedNow.Minute);
                 }
             </div>
 
-            <div id="myDropdown" onclick="loadPage('@roundedRise.ToShortTimeString()','@roundedSet.ToShortTimeString()')" class="dropdown-content">
+            <div id="myDropdown" onclick="loadPage('@roundedRise.ToShortTimeString()','@roundedSet.ToShortTimeString()','@roundedNow.ToShortTimeString()')" class="dropdown-content">
                 <div class="mt-3 ml-0 text-center"><b class="h4 nameDayAndMonDrop ">@DateTime.Now.ToString("ddd, d MMMM ", CultureInfo.GetCultureInfo("ru-ru")),@DateTime.Now.Hour:@DateTime.Now.Minute</b></div>
                 <div class="col-12">
 
                     <div  class="container2 text-right">
-
+                        <div class="moon">
+                            <i class=" fas fa-solid fa-moon "></i>
+                        </div>
                         <div class="sunbox col-12">
                             <div class="duga col-12"></div>
                             <div class="sun">
                                 <i class=" fas fa-solid fa-sun"></i>
+                               
                             </div>
+                            
                         </div>
 
 
@@ -266,35 +285,43 @@
     }
   
  
-    function loadPage(sunrise, sunset) {
-        console.log(sunrise);
+    function loadPage(sunrise, sunset,nowtime) {
+        
         var minutsOfSunrise = sunrise.split(/\s*:/);
         var minutsOfSunset = sunset.split(/\s*:/);
-        console.log(minutsOfSunrise[0]);
+        var minutsOfNowTime = nowtime.split(/\s*:/);
+   
         var roundOfSunrise = minutsOfSunrise[1] == 30 ? Number(minutsOfSunrise[0])+ 0.5 : minutsOfSunrise[0];
         var roundOfSunset = minutsOfSunset[1] == 30 ? Number(minutsOfSunset[0]) + 0.5 : minutsOfSunset[0];
+        var roundOfNowTime = minutsOfNowTime[1] == 30 ? Number(minutsOfNowTime[0]) + 0.5 : minutsOfNowTime[0];
+
         var difference = roundOfSunset - roundOfSunrise;
-        console.log(difference);
+        
         var gradus = 180 / difference;
         var now = new Date().toLocaleTimeString().slice(0, -3);
-        if (now < minutsOfSunrise) {
+        console.log(roundOfNowTime);
+        console.log(roundOfSunset);
+        console.log(roundOfSunrise);
+        
+        if (roundOfNowTime < roundOfSunrise) {
             document.getElementsByClassName('sunbox')[0].style.transform = " rotate(" + 0 + "deg)";
             document.getElementsByClassName('sun')[0].style.color = "orange";
-        } if (now > minutsOfSunset) {
-            document.getElementsByClassName('sunbox')[0].style.transform = " rotate(" + 170 + "deg)";
+            document.getElementsByClassName('moon')[0].style.visibility ="visible" ;
+          
+        } if (roundOfNowTime > roundOfSunset) {
+
+            document.getElementsByClassName('sunbox')[0].style.transform = " rotate(" + 180 + "deg)";
             document.getElementsByClassName('sun')[0].style.color = "orange";
+            document.getElementsByClassName('moon')[0].style.visibility ="visible" ;
         }
         else {
-        var nowTime = minutsOfSunrise[1] < 30 ? Number(minutsOfSunrise[0]) + 0.5 : minutsOfSunrise[0];
+      
         
-        var differenceOfTime = nowTime - minutsOfSunrise;
-        var deg = gradus * differenceOfTime;
-        console.log(difference);
-            
-          
-        document.getElementsByClassName('sunbox')[0].style.transform = " rotate(" + deg + "deg)";
-        console.log(document.getElementsByClassName('sunbox')[0].style.transform);
-            if (gradus > 165) {
+            var differenceOfTime = roundOfNowTime - roundOfSunrise;
+            var deg = gradus * differenceOfTime;
+            document.getElementsByClassName('sunbox')[0].style.transform = " rotate(" + deg + "deg)";
+     
+            if (deg > 165 || deg <15) {
             document.getElementsByClassName('sun')[0].style.color = "orange";
         }
         }

@@ -173,6 +173,58 @@
     padding-left: 2%;
     transition: 3s linear;
 }
+.moon {
+    visibility: hidden;
+    position: absolute;
+    bottom: 5%;
+    font-size: 2vw;
+    transition: opacity 5s;
+    color: #fc0;
+    right: 50%;
+    transform: translateY(-50%);
+    animation-name: Appearance;
+    animation-duration: 10s;
+    animation-timing-function: cubic-bezier(.1,-.6,.2,0);
+}
+@-webkit-keyframes Appearance {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-o-keyframes Appearance {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes Appearance {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes Appearance {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
 
 
     .duga {
