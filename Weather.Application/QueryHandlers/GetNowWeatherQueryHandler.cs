@@ -27,7 +27,7 @@ namespace Weather.Application.QueryHandlers
             {
                 RequestUri =
                     new Uri(
-                        $"https://api.openweathermap.org/data/2.5/weather?q=Vitebsk&units=metric&appid={_token}&lang=ru"),//todo: название города
+                        $"https://api.openweathermap.org/data/2.5/weather?q={request.CityName}&units=metric&appid={_token}&lang=ru"),
                 Method = HttpMethod.Get
 
             };

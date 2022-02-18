@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Weather", "Weather\Weather.csproj", "{92BCB020-E1B6-48B0-9CB7-0D760FFBBD32}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weather.Application", "Weather.Application\Weather.Application.csproj", "{28A6E2F2-EBA0-405C-B1EC-7901CB0A479A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Weather.Application", "Weather.Application\Weather.Application.csproj", "{28A6E2F2-EBA0-405C-B1EC-7901CB0A479A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weather.Contracts", "Weather.Contracts\Weather.Contracts.csproj", "{F9D8A618-DE4B-4AA5-9493-833AEE9D5C2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Weather.Contracts", "Weather.Contracts\Weather.Contracts.csproj", "{F9D8A618-DE4B-4AA5-9493-833AEE9D5C2E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

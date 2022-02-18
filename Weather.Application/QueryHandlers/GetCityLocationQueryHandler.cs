@@ -9,6 +9,7 @@ using MediatR;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Weather.Application.Queries;
+using Weather.Contracts.Exseption;
 using Weather.Contracts.Models;
 
 namespace Weather.Application.QueryHandlers
@@ -28,14 +29,18 @@ namespace Weather.Application.QueryHandlers
             {
                 RequestUri =
                     new Uri(
-                        $"http://open.mapquestapi.com/geocoding/v1/address?key={_token}&location=витебск"),//todo: название города
-                Method = HttpMethod.Get
+                        $"http://open.mapquestapi.com/geocoding/v1/address?key={_token}&location={request.CityName}"),
             };
             using (var response = await client.SendAsync(requestForCityCoordinates))
             {
                 response.EnsureSuccessStatusCode();
                 var cityInfo = await response.Content.ReadAsStringAsync();
                 var cityInfoToClass = JsonConvert.DeserializeObject<CityInfo>(cityInfo);
+                if (cityInfoToClass.Results[0].Locations[0].LatLng.Lat == 39.78373 &&
+                    cityInfoToClass.Results[0].Locations[0].LatLng.Lng == -100.445882)
+                {
+                    throw new NotFoundCityExseption(cityInfoToClass.Results[0].Locations[0].CityName);
+                }
                 return cityInfoToClass;
             }
         }

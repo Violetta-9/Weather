@@ -9,8 +9,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Polly;
 using Weather.Application.Queries;
 using Weather.Contracts.Models;
+using Weather.Filter;
 using Weather.Models;
 
 namespace Weather.Controllers
@@ -27,15 +29,16 @@ namespace Weather.Controllers
             return View("Question");
         }
 
-        
+      [NotFoundCityException]
         public  async Task<ActionResult> Details(string cityName)
         {
             
-            var weatherNowInfo = await _mediator.Send(new GetNowWeatherQuery("Витебск"));
-            var cityLocationInfo = await _mediator.Send((new GetCityLocationQuery("Витебск")));
+            var cityLocationInfo = await _mediator.Send((new GetCityLocationQuery(cityName)));
+            var weatherNowInfo = await _mediator.Send(new GetNowWeatherQuery(cityName));
+        
             var weatherDailyInfo = await _mediator.Send(new GetWeatherDailyQuery(
-                cityLocationInfo.Results[0].Locations[0].LatLng.Lat,
-                cityLocationInfo.Results[0].Locations[0].LatLng.Lng));
+                cityLocationInfo.Results[0].Locations[1].LatLng.Lat,
+                cityLocationInfo.Results[0].Locations[1].LatLng.Lng));
             var infoAboutWeather = new WeatherViewModel()
             {
                 NowWeatherInfo = weatherNowInfo,
@@ -66,7 +69,7 @@ namespace Weather.Controllers
         }
 
         // GET: WeatherController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Exception()
         {
             return View();
         }

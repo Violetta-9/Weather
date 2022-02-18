@@ -76,8 +76,8 @@
     font-size: 70%;
 }
 #myDropdown {
-    max-width: 40vw;
-    width: 40vw;
+    max-width: 70vmin;
+    width: 70vw;
     z-index: 9999;
     max-height: 60vh;
     background-color: rgb(245,245,245);
@@ -138,7 +138,9 @@
    
 }
 .container2 {
-    width: 18vw;
+
+    max-width: 18vmax;
+    width: 21vw;
     height: 9vmax;
     margin: auto;
     overflow: hidden;
